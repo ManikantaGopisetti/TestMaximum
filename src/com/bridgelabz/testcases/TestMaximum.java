@@ -1,41 +1,42 @@
 package com.bridgelabz.testcases;
 
-public class TestMaximum {
+public class TestMaximum<T> {
 
-	public static <T extends Comparable<T>> void maximum(T[] arr) {
+	T variable1;
+	T variable2;
+	T variable3;
 
-		int maxCheck = arr[0].compareTo(arr[1]);
+	public TestMaximum(T variable1, T variable2, T variable3) {
+		super();
+		this.variable1 = variable1;
+		this.variable2 = variable2;
+		this.variable3 = variable3;
+	}
+
+	@SuppressWarnings({ "hiding", "unchecked" })
+	public <T extends Comparable<T>> void maximum() {
+
+		int maxCheck = ((T) variable1).compareTo((T) variable2);
 		if (maxCheck > 0) {
-			maxCheck = arr[0].compareTo(arr[2]);
+			maxCheck = ((T) variable1).compareTo((T) variable3);
 			if (maxCheck > 0) {
-				System.out.println("maximum of three values is : " + arr[0]);
+				System.out.println("maximum of three values is : " + variable1);
 			} else
-				System.out.println("maximum of three values is : " + arr[2]);
+				System.out.println("maximum of three values is : " + variable3);
 
 		} else if (maxCheck < 0) {
-			maxCheck = arr[1].compareTo(arr[2]);
+			maxCheck = ((T) variable2).compareTo((T) variable3);
 			if (maxCheck > 0) {
-				System.out.println("maximum of three values is : " + arr[1]);
+				System.out.println("maximum of three values is : " + variable2);
 			} else
-				System.out.println("maximum of three values is : " + arr[2]);
+				System.out.println("maximum of three values is : " + variable3);
 		}
 	}
-	
+
 	public static void main(String[] args) {
-		
-		Integer intArray[] = {20,22,21};
-		Double doubleArray[] = {26.26,22.25,28.23};
-		
-		maximum(intArray);
-		maximum(doubleArray);
-		
-		/** Test cases for Strings. **/
-		String stringArray[]={"Peach", "Apple", "Banana"};  //TC-1.1 :- max string at first position.
-		String stringArray1[]={"car", "cycle", "bike"};  //TC-1.2 :- max string at second position.
-		String stringArray2[]={"bat", "ball", "wickets"}; //TC-1.3 :- max string at third position. 
-		maximum(stringArray);
-		maximum(stringArray1);
-		maximum(stringArray2);
-	
+
+		new TestMaximum<>(20, 40, 60).maximum();
+		new TestMaximum<>(81.81, 40.99, 60.55).maximum();
+		new TestMaximum<>("mani", "Mani", "MANI").maximum();
 	}
 }
